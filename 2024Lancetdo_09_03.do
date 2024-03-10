@@ -2801,3 +2801,78 @@ drop if hip==1
 psmatch2 ind age_in_years female imddecile charlindex i.hrg4 , outcome(readmission) neighbor (1) caliper (0.01) ate common
 
 pstest, both 
+
+
+///PROMS////
+
+use "/lshds/workspace/projects/comparing_public_private_dangers/hip and knee data2024.dta", clear
+
+keep if hip==1
+keep if participation==1
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(dead) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(readmission) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(upt) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4, outcome(bpreoplos) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(bpostoplos) neighbor (1) caliper (0.01) ate common
+
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4, outcome(infectiontotalmax) neighbor (1) caliper (0.01) ate common
+
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4, outcome(adrugreactionmax) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(presulcernewmax) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(postopembothrommax) neighbor (1) caliper (0.01) ate common
+
+
+
+use "/lshds/workspace/projects/comparing_public_private_dangers/hip and knee data2024.dta", clear
+
+drop if hip==1
+keep if participation==1
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(dead) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(readmission) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(upt) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4, outcome(bpreoplos) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(bpostoplos) neighbor (1) caliper (0.01) ate common
+
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4, outcome(infectiontotalmax) neighbor (1) caliper (0.01) ate common
+
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4, outcome(adrugreactionmax) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(presulcernewmax) neighbor (1) caliper (0.01) ate common
+
+bootstrap r(att), reps(1000) : psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(postopembothrommax) neighbor (1) caliper (0.01) ate common
+
+
+///assess quality of matching////
+
+use "/lshds/workspace/projects/comparing_public_private_dangers/hip and knee data2024.dta", clear
+
+keep if hip==1
+
+psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(readmission) neighbor (1) caliper (0.01) ate common
+
+pstest, both 
+
+
+use "/lshds/workspace/projects/comparing_public_private_dangers/hip and knee data2024.dta", clear
+
+drop if hip==1
+
+psmatch2 ind age_in_years female imddecile charlindex q1_score i.hrg4 , outcome(readmission) neighbor (1) caliper (0.01) ate common
+
+pstest, both 
