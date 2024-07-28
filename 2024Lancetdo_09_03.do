@@ -245,13 +245,9 @@ drop if _merge==1
 drop _merge
 
 
-gen readmission=0
-replace readmission=1 if daystonextread>=0 & daystonextread<29
-replace readmission=0 if daystonextread==.
-tab readmission
-gen emread=0
-replace emread==1 if daystoemread1<29
 
+gen readmission=0
+replace readmission==1 if daystoemread1<29 & daystoemread1!=.
 
 
 save "/lshds/workspace/projects/comparing_public_private_dangers/hip and knee data2024spellid.dta", replace
